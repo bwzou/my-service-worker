@@ -1,4 +1,4 @@
-self.addEventListener('install', function () {
+self.addEventListener('install', function (event) {
   // waitUntil -- 确保 service worker 不会在waitUntil里面的代码执行完毕之前安装完成
   event.waitUntil(
     caches.open('v1').then(function (cache) {
@@ -19,7 +19,7 @@ self.addEventListener('install', function () {
 })
 
 // 每次任何被 service worker 控制的资源被请求到时，都会触发 fetch 事件
-self.addEventListener('fetch', function () {
+self.addEventListener('fetch', function (event) {
   event.respondWith(caches.match(event.request).then(function (response) {
     // cache.match always resolves
     // but in case of success response will have value
@@ -43,7 +43,7 @@ self.addEventListener('fetch', function () {
 })
 
 // 删除旧缓存
-self.addEventListener('active', function () {
+self.addEventListener('activate', function (event) {
   var cacheWhitelist = ['v1']
 
   event.waitUntil(
