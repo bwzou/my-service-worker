@@ -9,7 +9,6 @@ self.addEventListener('install', function (event) {
         '/my-service-worker/app.js',
         '/my-service-worker/image-list.js',
         '/my-service-worker/star-wars-logo.jpeg',
-        '/my-service-worker/gallery/',
         '/my-service-worker/gallery/bountyHunters.jpeg',
         '/my-service-worker/gallery/myLittleVader.jpeg',
         '/my-service-worker/gallery/snowTroopers.jpeg'
@@ -43,16 +42,16 @@ self.addEventListener('fetch', function (event) {
 })
 
 // 删除旧缓存
-self.addEventListener('activate', function (event) {
-  var cacheWhitelist = ['v1']
-
-  event.waitUntil(
-    caches.keys().then(function (keyList) {
-      return Promise.all(keyList.map(function (key) {
-        if (cacheWhitelist.indexOf(key) === -1) {
-          return caches.delete(key)
-        }
-      }))
-    })
-  )
-})
+// self.addEventListener('activate', function (event) {
+//   var cacheWhitelist = ['v1']
+//
+//   event.waitUntil(
+//     caches.keys().then(function (keyList) {
+//       return Promise.all(keyList.map(function (key) {
+//         if (cacheWhitelist.indexOf(key) === -1) {
+//           return caches.delete(key)
+//         }
+//       }))
+//     })
+//   )
+// })
